@@ -77,7 +77,7 @@ set(SOURCES
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Where are the header files
-target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include/)
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/)
 
 target_link_libraries(
   ${PROJECT_NAME}
@@ -85,6 +85,12 @@ target_link_libraries(
   project_warnings
   project_options
   )
+
+# ...
+add_executable(outputter
+  outputter/main.cc
+)
+target_link_libraries(outputter ${PROJECT_NAME})
 
 # Unit testing with Catch2
 option(NDR_UNIT_TESTS "Build unit tests" OFF)
